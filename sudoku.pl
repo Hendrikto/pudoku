@@ -19,24 +19,25 @@ value_allowed(V, R, C, B) :-
 	\+ column_contains(C, V),
 	\+ block_contains(B, V).
 
-% print_row(row, column)
-print_row(R, 8) :-
+% print_row(row)
+print_row(R) :- print_r(R, 0).
+print_r(R, 8) :-
 	cell(V, R, 8, _),
 	write(V),
 	nl.
-print_row(R, C) :-
+print_r(R, C) :-
 	cell(V, R, C, _),
 	write(V),
 	Next is C + 1,
-	call(print_row(R, Next)).
+	call(print_r(R, Next)).
 
 
 % print_sudoku()
 print_sudoku :- print_s(0).
 print_s(8) :-
-	print_row(8, 0).
+	print_row(8).
 print_s(R) :-
-	print_row(R, 0),
+	print_row(R),
 	Next is R + 1,
 	print_s(Next).
 
