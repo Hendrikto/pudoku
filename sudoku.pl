@@ -44,3 +44,21 @@ print_s(R) :-
 	Next is R + 1,
 	print_s(Next).
 
+% solve()
+solve() :- solve_row(0, 0).
+
+% solve_row(row, colum)
+solve_row(_, 9, _) :- true.
+solve_row(_, _, 10) :- false.
+solve_row(R, C) :-
+	B is (R div 3) * 3 + C div 3,
+	value_allowed(V, R, C, B),
+	write(r), write(R),
+	write(c), write(C),
+	write(b), write(B),
+	write(v), write(V), nl,
+	asserta(cell(V, R, C, B)),
+	NC is C + 1,
+	solve_row(R, NC, 1).
+	%retract(cell(V, R, C, B)),
+
