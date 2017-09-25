@@ -15,6 +15,7 @@ block_contains(B, V) :-
 
 % value_allowed(value, row, column, block)
 value_allowed(V, R, C, B) :-
+	member(V, [1, 2, 3, 4, 5, 6, 7, 8, 9]),
 	\+ row_contains(R, V),
 	\+ column_contains(C, V),
 	\+ block_contains(B, V).
